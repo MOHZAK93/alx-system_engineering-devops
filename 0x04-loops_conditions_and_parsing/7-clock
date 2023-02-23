@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#Displays Best School 10 times
+x=0
+y=1
+while [ $x -lt 12 ]
+do
+	echo "Hour: $x"
+	while [ $y -lt 60 ]
+	do
+		echo "$y"
+		y=$((y + 1))
+	done
+	y=0
+	x=$((x + 1))
+done
