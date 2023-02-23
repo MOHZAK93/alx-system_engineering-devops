@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#Displays Best School 10 times
+LIST="$(ls)"
+for x in $LIST
+do
+	echo "$x"
+done
