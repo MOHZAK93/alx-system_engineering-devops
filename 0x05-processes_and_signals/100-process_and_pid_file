@@ -5,12 +5,26 @@
 # Displays "I hate the kill command" when receiving a SIGTERM signal
 # Displays "Y U no love me?!" when receiving a SIGINT signal
 # Deletes "/var/run/myscript.pid" and terminates itself when receiving a SIGQUIT or SIGTERM signal
-echo $$ myscript.pid
+function create_file()
+{
+	sudo touch /var/run/myscript.pid
+	sudo chown "$USER":"$USER" /var/run/myscript.pid
+	echo $$ > /var/run/myscript.pid
+}
+
+function delete_file()
+{
+	sudo rm /var/run/myscript.pid
+	exit
+}
+
+create_file
+
 trap 'echo "I hate the kill command"' SIGTERM
 trap 'echo "Y U no love me?!"' SIGINT
-trap 'rm myscript.pid'	SIGQUIT
+trap delete_file SIGQUIT
+
 while true
 do
 	echo "To infinity and beyond"
-	sleep 2
 done
