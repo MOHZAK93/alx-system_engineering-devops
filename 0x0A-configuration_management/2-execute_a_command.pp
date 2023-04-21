@@ -2,6 +2,6 @@
 exec { 'pkill killmenow':
   path     => '/usr/bin',
   command  => 'pkill killmenow',
-  provider => 'pip3',
+  provider => 'shell',
   returns  => [0, 1]
 }
