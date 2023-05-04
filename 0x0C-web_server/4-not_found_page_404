@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Configure nginx server so that /redirect_me is redirecting to another page
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo service start
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+_string="\\\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /var/www/html;\n\t\tinternal;n\n\t}"
+sudo sed -i "20i $_string" /etc/nginx/sites-available/default
+sudo service nginx restart
+sudo service nginx reload
