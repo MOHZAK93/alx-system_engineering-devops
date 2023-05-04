@@ -5,13 +5,13 @@
 #Update the package list
 sudo apt-get -y update
 
-#Upgrade the package list
-sudo apt-get -y upgrade
-
 #Install Nginx
 sudo apt-get -y install nginx
 
+echo "Hello World!" > /var/www/html/index.html
 #Start Nginx
 sudo service nginx start
 
+
 echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo service nginx restart
