@@ -2,25 +2,5 @@
 # Automating the nginx configuration
 sudo apt-get -y update
 sudo apt-get -y install nginx
-
-echo "Hello World!" > /var/www/html/index.html
-
-echo "
-server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
-
-	root/var/www/html;
-	index index.html;
-
-	error_page 404 /404.html;
-	location = /404.html {
-		root /var/html;
-		internal;
-	}
-	rewrite ^/redirect_me https://google.com permanent;
-	add_header X-Served-By $HOSTNAME;
-}
-" > /etc/nginx/sites-available/default
-
+sudo sed -i "15i \\\tadd_header X-Served-By $HOSTNAME;"	/etc/nginx/nginx.conf
 sudo service nginx restart
