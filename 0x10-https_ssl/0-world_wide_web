@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
-1
-2
-3
+#Server domain information
+
+domain_check() {
+	SUBDOMAINS=("www" "lb-01" "web-01" "web-02")
+	if [ -z "$2" ]
+	then
+		for x in "${SUBDOMAINS[@]}"; do
+			dig "$x.$1" | grep -A 'ANSWER SECTION:' | tail -n1 | awk '{split($0, SUBDOMAIN, "."); print "The subdomain " SUBDOMAIN[1] " is a " $4 " record and points to " $5"}'
+		done
+	else
+		dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | awk '{split($0, SUBDOMAIN, "."); print "The subdomain " SUBDOMAIN[1] " is a " $4 " record and points to " $5}'
+	fi
+}
+domain_check "$1" "$2"
