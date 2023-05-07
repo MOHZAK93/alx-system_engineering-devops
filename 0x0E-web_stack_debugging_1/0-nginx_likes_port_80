@@ -1,0 +1,5 @@
+#!/usr/bin/env/bash
+#debugging ubuntu server that is running on Nginx webserver
+
+cp -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
