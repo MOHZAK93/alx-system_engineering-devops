@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 #install and configure HAproxy on server
 
-apt-get update
+sudo apt-get update
 
-add-apt-repository ppa:vbernat/haproxy-2.6 -y
+sudo add-apt-repository ppa:vbernat/haproxy-2.6 -y
 
-apt-get update
-apt-get install haproxy=2.6.\* -y
+sudo apt-get update
+sudo apt-get install haproxy=2.6.\* -y
 
-systemctl enable haproxy
+sudo systemctl enable haproxy
 
 cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.backup
 
@@ -24,4 +24,4 @@ backend web-backend
     server 161688-web-02 100.25.148.35:80 check
 " >> /etc/haproxy/haproxy.cfg
 
-systemctl restart haproxy
+sudo service haproxy restart
