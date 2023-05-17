@@ -20,8 +20,8 @@ frontend web-frontend
 
 backend web-backend
     balance roundrobin
-    server 161688-web-01 54.152.57.180:80 check
-    server 161688-web-02 3.84.239.204:80 check
+    server 161688-web-01 18.207.1.109:80 check
+    server 161688-web-02 100.25.148.35:80 check
 " >> /etc/haproxy/haproxy.cfg
 
 systemctl restart haproxy
