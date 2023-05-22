@@ -2,16 +2,16 @@
 """Gather data from an API"""
 
 
-import requests
-import sys
+from requests import get
+from sys import argv
 
 
-def run():
-    user = "https://jsonplaceholder.typicode.com/users/" + sys.argv[1]
-    todos = "https://jsonplaceholder.typicode.com/todos/?userId=" + sys.argv[1]
+def gad():
+    user = "https://jsonplaceholder.typicode.com/users/" + argv[1]
+    todos = "https://jsonplaceholder.typicode.com/todos/?userId=" + argv[1]
 
-    r1 = requests.get(user)
-    r2 = requests.get(todos)
+    r1 = get(user)
+    r2 = get(todos)
 
     employee = r1.json()
     tasks = r2.json()
@@ -26,5 +26,5 @@ def run():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        run()
+    if len(argv) == 2:
+        gad()
