@@ -1,26 +1,31 @@
 #!/usr/bin/python3
-"""Uses REST API for a given employee ID, returns information
-    about his/her TODO list progress
 """
+Gather data from API
+"""
+
+
 from requests import get
 from sys import argv
 
 
-if __name__ == '__main__':
-    user_id = argv[1]
-    url = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
-    response = get(url)
-    name = response.json().get('name')
+def gad():
+    user = 'https://jsonplaceholder.typicode.com/users/' + argv[1]
+    todos = 'https://jsonplaceholder.typicode.com/todos/?userId=' + argv[1]
+    r1 = get(user)
+    r2 = get(todos)
 
-    url = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(user_id)
-    response = get(url)
-    tasks = response.json()
-    done = 0
-    done_tasks = []
-    for task in tasks:
-        if task.get('completed'):
-            done_tasks.append(task)
-            done += 1
-    print(f"Employee {name} is done with tasks({done}/{len(tasks)})")
+    emp = r1.json()
+    name = emp.get('name')
+    tasks = r2.json()
+    done_tasks = [x for x in tasks if x.get('completed')]
+    d_len = len(done_tasks)
+
+    print(f"Employee {name} is done with tasks({d_len}/{len(tasks)})")
+
     for task in done_tasks:
         print(f"\t {task.get('title')}")
+
+
+if __name__ == '__main__':
+    if len(argv) == 2:
+        gad()
