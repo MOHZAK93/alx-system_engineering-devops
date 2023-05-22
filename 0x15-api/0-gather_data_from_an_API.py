@@ -9,6 +9,7 @@ from sys import argv
 
 
 def gad():
+    """Gather data from an API"""
     user = 'https://jsonplaceholder.typicode.com/users/' + argv[1]
     todos = 'https://jsonplaceholder.typicode.com/todos/?userId=' + argv[1]
     r1 = get(user)
