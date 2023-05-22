@@ -1,19 +1,18 @@
 #!/usr/bin/python3
-"""
-Gather data from API
-"""
+"""Gather data from API"""
 
 
-from requests import get
-from sys import argv
+import requests
+import sys
 
 
 def gad():
     """Gather data from an API"""
-    user = 'https://jsonplaceholder.typicode.com/users/' + argv[1]
-    todos = 'https://jsonplaceholder.typicode.com/todos/?userId=' + argv[1]
-    r1 = get(user)
-    r2 = get(todos)
+
+    user = 'https://jsonplaceholder.typicode.com/users/' + sys.argv[1]
+    todos = 'https://jsonplaceholder.typicode.com/todos/?userId=' + sys.argv[1]
+    r1 = requests.get(user)
+    r2 = requests.get(todos)
 
     emp = r1.json()
     name = emp.get('name')
@@ -28,5 +27,5 @@ def gad():
 
 
 if __name__ == '__main__':
-    if len(argv) == 2:
+    if len(sys.argv) == 2:
         gad()
