@@ -11,7 +11,7 @@ def recurse(subreddit, hot_list=[]):
     for a given subreddit."""
     reddit_url1 = "https://www.reddit.com/r/" + subreddit
     reddit_url2 = reddit_url1 + "/hot.json?limit=100&after=after"
-    header = {"User-Agent": "Chrome/81.0.4044.129"}
+    header = {"User-Agent": "Chrome/81.0.404.129"}
     req = requests.get(reddit_url2, headers=header)
     reddit = req.json()
 
